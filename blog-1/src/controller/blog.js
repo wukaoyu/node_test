@@ -1,27 +1,15 @@
 const { exec } = require("../db/mysql")
 
 const getList = (author, keyword) => {
-    const sql = "select * from blogs where 1=1";
+    let sql = "select * from blogs where 1=1 ";
     if (author) {
-        sql += `and author=${author}`
+        sql += `and author = '${author}'`
     }
     if (keyword) {
-        sql += `and title like%${keyword}%`
+        sql += `and title like '%${keyword}%'`
     }
-    return [
-        {
-            id: 1,
-            title: "标题A",
-            content: "内容A",
-            author:"zhangsan"
-        },
-        {
-            id: 2,
-            title: "标题B",
-            content: "内容B",
-            author:"lisi"
-        },
-    ]
+    console.log(exec(sql));
+    return exec(sql);
 }
 const getDetail = (id) => {
     return {
