@@ -40,11 +40,13 @@ const serverHandle = (req, res) =>  {
     getPostData(req).then(postData => {
         req.body = postData
             //博客路由
-        const blogData = handBlogRouter(req, res);
-        if(blogData) {
-            res.end(
-                JSON.stringify(blogData)
-            )
+        const blogResult = handBlogRouter(req, res);
+        if(blogResult) {
+            blogResult.then(blogData => {
+                res.end(
+                    JSON.stringify(blogData)
+                )
+            })
             return
         }
 

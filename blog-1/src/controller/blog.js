@@ -8,7 +8,8 @@ const getList = (author, keyword) => {
     if (keyword) {
         sql += `and title like '%${keyword}%'`
     }
-    console.log(exec(sql));
+    // console.log(typeof exec(sql));
+    //返回promise
     return exec(sql);
 }
 const getDetail = (id) => {
