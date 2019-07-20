@@ -27,7 +27,7 @@ const getPostData = (req) => {
     return promise;
 }
 
-const serverHandle = (req, res) =>  {
+const serverHandle = (req, res) => {
     res.setHeader('Content-type', 'application/json');
 
     //获取path
@@ -51,11 +51,13 @@ const serverHandle = (req, res) =>  {
         }
 
         //登录路由
-        const userData = handUserRouter(req, res);
-        if(blogData) {
-            res.end(
-                JSON.stringify(userData)
-            )
+        const userResult = handUserRouter(req, res);
+        if(userResult) {
+            userResult.then(userData => {
+                res.end(
+                    JSON.stringify(userData)
+                )
+            })
             return
         }
 
